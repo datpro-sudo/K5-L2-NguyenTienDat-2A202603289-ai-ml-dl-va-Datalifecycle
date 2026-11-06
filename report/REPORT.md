@@ -84,7 +84,7 @@ Lab hôm nay chỉ xem prediction. Chuỗi dưới đây là vòng đời produc
 | **Phát hiện vật thể (Object Detection)** | Danh sách hộp `bbox_xyxy` kèm `class_name`. Đơn vị nhãn = **1 hộp quanh 1 vật** (kitchen có 11 prediction ở ngưỡng 0.35, taxonomy COCO-80). | Person `0.61` `[0.12, 263.18, 61.55, 310.78]` chỉ là một phần tay ở mép trái, bị cắt mép. Oven `0.63` `[489.09, 200.73, 617.81, 344.88]` là bồn rửa và tủ đen, oven `0.69` bên trái là bếp lò kiểu cũ: ranh giới lớp `oven` không rõ. Bowl `0.38` `[0.32, 305.02, 87.69, 371.32]` chạm mép ảnh. | Vẽ một hộp ôm sát phần nhìn thấy, đúng lớp. Vật bị cắt mép thì hộp chạm mép ảnh. Câu hỏi định nghĩa lớp (bếp lò cũ có là `oven` không?) thì đưa lên Lab Coach. | Có sót vật không (recall), có hộp thừa hoặc sai lớp không (precision), hộp có sát vật không. Xem kỹ hộp điểm thấp như cup `0.45`, bowl `0.38`. |
 | **Phân đoạn từng đối tượng (Instance Segmentation)** | Mỗi vật một **mask/polygon** (`polygon_xy`) kèm `class_name` và `instance_id`. Đơn vị nhãn = **1 mask của 1 vật**. | Dining table `0.58` (kitchen-005) có 598 điểm, mask phủ cả bát, chai, bột trên bàn và có điểm lộn xộn. Oven `0.49` (kitchen-007) bị bàn, bowl và người chồng lên, biên dưới không rõ. Bowl `0.53` (kitchen-006), bowl `0.70` (kitchen-003) và person `0.43` (kitchen-009) nằm sát nhau ở góc dưới trái. | Vẽ polygon bám đường viền phần nhìn thấy, mỗi vật một mask, không chồng, không để hở khe giữa hai vật chạm nhau. Câu hỏi định nghĩa (mask bàn có khoét đồ trên bàn không?) thì escalation. | Mask có lấn ra nền hoặc cắt vào vật không, vật chạm nhau có bị gộp hoặc chồng mask không, `instance_id` có tách đúng từng vật không, mask có theo guideline không. |
 
-1. An toàn dữ liệu
+5. An toàn dữ liệu
   1.Quy tắc bảo vệ dữ liệu của bạn cho bài lab này là gì? (viết 1 câu)
     - Chỉ dùng ảnh và file lab được giao (traffic, kitchen, dining) cho đúng mục đích bài học, không sao chép, chia sẻ hay đưa ra ngoài môi trường lab, và không nhập dữ liệu nhạy cảm hay dữ liệu cá nhân thật vào công cụ nào khác.
   2.Nếu gặp ảnh hoặc dữ liệu không đúng phạm vi, bạn sẽ dừng và báo cho ai?
@@ -92,7 +92,7 @@ Lab hôm nay chỉ xem prediction. Chuỗi dưới đây là vòng đời produc
     - Báo Lab Coach (người hướng dẫn lab, cũng là người nhận escalation ở các phần trước). Nếu lab có quy định kênh báo riêng, hoặc người phụ trách an toàn dữ liệu, thì báo theo kênh đó.
     - Nội dung báo ngắn gọn: tên file hoặc sample_id, điều gì khiến bạn thấy sai phạm vi (ví dụ ảnh có mặt người rõ nét, biển số, thông tin cá nhân, hoặc không thuộc bộ ảnh lab), và bạn đã dừng ở bước nào.
   
-1. Checklist trước khi nộp link repo
+6. Checklist trước khi nộp link repo
 Kiểm tra trên GitHub trong thư mục report/:
 
  REPORT.md (file này đã điền)
